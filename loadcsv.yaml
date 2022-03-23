@@ -1,0 +1,29 @@
+# openapi-definition.yaml
+swagger: "2.0"
+info:
+  title: loadcsv
+  description: API de carga csv
+  version: 1.0.0
+schemes:
+ - https
+produces:
+ - application/json
+paths:
+  /loadcsv/{csv_name}:
+      get:
+        summary: cargar csv_name
+        operationId: loadcsv
+        x-google-backend:
+          address: https://us-central1-project-datatest-001.cloudfunctions.net/function-2
+          protocol: h2
+        parameters:
+          - name: csv_name
+            in: path
+            description: nombre del archivo csv
+            required: true
+            type: string
+        responses:
+          '200':
+            description: carga exitosa
+            schema:
+              type: string
